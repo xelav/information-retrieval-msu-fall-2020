@@ -13017,6 +13017,45 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
 
 
 <style type="text/css">
@@ -13050,7 +13089,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -13074,16 +13113,9 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#1047;&#1072;&#1076;&#1072;&#1085;&#1080;&#1077;-4">&#1047;&#1072;&#1076;&#1072;&#1085;&#1080;&#1077; 4<a class="anchor-link" href="#&#1047;&#1072;&#1076;&#1072;&#1085;&#1080;&#1077;-4">&#182;</a></h1>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[148]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
@@ -13093,7 +13125,9 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">Pool</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="k">import</span> <span class="n">TfidfTransformer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">normalize</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="k">import</span> <span class="n">cosine_similarity</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">wikipedia</span><span class="o">.</span><span class="n">set_lang</span><span class="p">(</span><span class="s1">&#39;ru&#39;</span><span class="p">)</span>
 </pre></div>
@@ -13106,14 +13140,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#1047;&#1072;&#1075;&#1088;&#1091;&#1078;&#1072;&#1077;&#1084;-&#1089;&#1090;&#1072;&#1090;&#1100;&#1080;-&#1080;-&#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1099;">&#1047;&#1072;&#1075;&#1088;&#1091;&#1078;&#1072;&#1077;&#1084; &#1089;&#1090;&#1072;&#1090;&#1100;&#1080; &#1080; &#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1099;<a class="anchor-link" href="#&#1047;&#1072;&#1075;&#1088;&#1091;&#1078;&#1072;&#1077;&#1084;-&#1089;&#1090;&#1072;&#1090;&#1100;&#1080;-&#1080;-&#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1099;">&#182;</a></h2><p>Для удобства, используем пакет <code>wikipedia</code> для загрузки страниц</p>
-
+<h2 id="Get-the-data">Get the data<a class="anchor-link" href="#Get-the-data">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">page_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Трезубец_Посейдона&#39;</span><span class="p">,</span> <span class="s1">&#39;Флаг Барбадоса&#39;</span><span class="p">,</span> <span class="s1">&#39;Биологическое_оружие&#39;</span><span class="p">,</span>
@@ -13129,7 +13162,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
@@ -13147,14 +13180,13 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#1054;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072;-&#1076;&#1072;&#1085;&#1085;&#1099;&#1093;">&#1054;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072; &#1076;&#1072;&#1085;&#1085;&#1099;&#1093;<a class="anchor-link" href="#&#1054;&#1073;&#1088;&#1072;&#1073;&#1086;&#1090;&#1082;&#1072;-&#1076;&#1072;&#1085;&#1085;&#1099;&#1093;">&#182;</a></h2><p>Чистим статьи из википедии, разбиваем на предложения и лемматизируем слова в них.</p>
-
+<h2 id="Stemming">Stemming<a class="anchor-link" href="#Stemming">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13166,6 +13198,7 @@ div#notebook {
     <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\=\=.*\=\=&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="c1"># remove headers</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w \.]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="c1"># remove non-letter symbols</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span>
+    <span class="k">if</span>
     <span class="n">original_sentences</span> <span class="o">+=</span> <span class="n">s</span>
     <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
         <span class="n">lemmitized</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">imap</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="n">total</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
@@ -13187,12 +13220,13 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 44/44 [00:56&lt;00:00,  1.27s/it]
-100%|██████████| 2/2 [00:05&lt;00:00,  2.92s/it]
-100%|██████████| 11/11 [00:14&lt;00:00,  1.29s/it]
-100%|██████████| 36/36 [00:40&lt;00:00,  1.12s/it]
-100%|██████████| 22/22 [00:26&lt;00:00,  1.19s/it]
-100%|██████████| 31/31 [00:32&lt;00:00,  1.04s/it]
+<pre>Installing mystem to C:\Users\admin/.local/bin\mystem.exe from http://download.cdn.yandex.net/mystem/mystem-3.1-win-64bit.zip
+100%|██████████████████████████████████████████| 44/44 [00:36&lt;00:00,  1.21it/s]
+100%|████████████████████████████████████████████| 2/2 [00:01&lt;00:00,  1.21it/s]
+100%|██████████████████████████████████████████| 11/11 [00:08&lt;00:00,  1.24it/s]
+100%|██████████████████████████████████████████| 36/36 [00:36&lt;00:00,  1.02s/it]
+100%|██████████████████████████████████████████| 22/22 [00:23&lt;00:00,  1.06s/it]
+100%|██████████████████████████████████████████| 31/31 [00:28&lt;00:00,  1.10it/s]
 </pre>
 </div>
 </div>
@@ -13201,17 +13235,9 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Также лемматизируем слова из запросов</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">queries_processed</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13225,22 +13251,33 @@ div#notebook {
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>100%|████████████████████████████████████████████| 3/3 [00:05&lt;00:00,  1.98s/it]
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1103;&#1077;&#1084;-&#1087;&#1088;&#1086;&#1084;&#1077;&#1078;&#1091;&#1090;&#1086;&#1095;&#1085;&#1099;&#1077;-&#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;">&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1103;&#1077;&#1084; &#1087;&#1088;&#1086;&#1084;&#1077;&#1078;&#1091;&#1090;&#1086;&#1095;&#1085;&#1099;&#1077; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;<a class="anchor-link" href="#&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1103;&#1077;&#1084;-&#1087;&#1088;&#1086;&#1084;&#1077;&#1078;&#1091;&#1090;&#1086;&#1095;&#1085;&#1099;&#1077;-&#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;">&#182;</a></h2>
+</div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">SAVE_DATA</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="k">if</span> <span class="n">SAVE_DATA</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lemmatized2.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lemmatized.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
         <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">((</span><span class="n">docs</span><span class="p">,</span> <span class="n">original_sentences</span><span class="p">,</span> <span class="n">queries_processed</span><span class="p">),</span> <span class="n">output_file</span><span class="p">)</span>
 </pre></div>
 
@@ -13254,7 +13291,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lemmatized2.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;lemmatized.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">output_file</span><span class="p">:</span>
     <span class="n">docs</span><span class="p">,</span> <span class="n">original_sentences</span><span class="p">,</span> <span class="n">queries_processed</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
 </pre></div>
 
@@ -13266,20 +13303,126 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#1055;&#1086;&#1083;&#1091;&#1095;&#1077;&#1085;&#1080;&#1077;-TF-iDF-&#1074;&#1077;&#1082;&#1090;&#1086;&#1088;&#1086;&#1074;-&#1080;-&#1074;&#1099;&#1095;&#1080;&#1089;&#1083;&#1077;&#1085;&#1080;&#1077;-&#1073;&#1083;&#1080;&#1079;&#1086;&#1089;&#1090;&#1080;-&#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1086;&#1074;">&#1055;&#1086;&#1083;&#1091;&#1095;&#1077;&#1085;&#1080;&#1077; TF-iDF &#1074;&#1077;&#1082;&#1090;&#1086;&#1088;&#1086;&#1074; &#1080; &#1074;&#1099;&#1095;&#1080;&#1089;&#1083;&#1077;&#1085;&#1080;&#1077; &#1073;&#1083;&#1080;&#1079;&#1086;&#1089;&#1090;&#1080; &#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1086;&#1074;<a class="anchor-link" href="#&#1055;&#1086;&#1083;&#1091;&#1095;&#1077;&#1085;&#1080;&#1077;-TF-iDF-&#1074;&#1077;&#1082;&#1090;&#1086;&#1088;&#1086;&#1074;-&#1080;-&#1074;&#1099;&#1095;&#1080;&#1089;&#1083;&#1077;&#1085;&#1080;&#1077;-&#1073;&#1083;&#1080;&#1079;&#1086;&#1089;&#1090;&#1080;-&#1079;&#1072;&#1087;&#1088;&#1086;&#1089;&#1086;&#1074;">&#182;</a></h2><p>Для этого используем <code>TFidfVectorized</code> из пакета `scikit-learn'.</p>
+<h2 id="TF-iDF">TF-iDF<a class="anchor-link" href="#TF-iDF">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">vectorize</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">vocab</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    docs - list of lists of tokens</span>
+<span class="sd">    vocab - set of tokens</span>
+<span class="sd">    Returns count array with shape (N x V), where N - number of documents and V - size of vocab</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">vocab</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">token</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sentence</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">vectorized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">)))</span>
+
+    <span class="n">token_ind_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">tok</span><span class="p">:</span> <span class="n">ind</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">tok</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">vocab</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">for</span> <span class="n">doc_ind</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">token_id</span> <span class="o">=</span> <span class="n">token_ind_dict</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+                <span class="n">vectorized</span><span class="p">[</span><span class="n">doc_ind</span><span class="p">][</span><span class="n">token_id</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">vectorized</span>
+
+<span class="k">def</span> <span class="nf">get_tf</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">matrix</span>
+
+<span class="k">def</span> <span class="nf">get_tf_norm</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">matrix</span> <span class="o">/</span> <span class="n">matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_tf_max_norm</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alpha</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">matrix</span> <span class="o">/</span> <span class="n">matrix</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">get_idf</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">((</span><span class="n">matrix</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># return np.nan_to_num(matrix.shape[0] / ((matrix &gt; 0).sum(axis=0)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remove short tokens and sentences without tokens</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[205]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokens</span> <span class="k">for</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">sent</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">original_sentences</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">original_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">sent</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">original_sentences</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">]</span>
 
-<span class="n">queries_tfidf</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">queries_processed</span><span class="p">)</span>
+<span class="n">original_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">sent</span> <span class="k">for</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">sent</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">original_sentences</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokens</span> <span class="k">for</span> <span class="n">tokens</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="No-TF-normalization">No TF normalization<a class="anchor-link" href="#No-TF-normalization">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">token</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">docs</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sentence</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">token</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">doc_vec</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+<span class="n">doc_tf</span> <span class="o">=</span> <span class="n">get_tf</span><span class="p">(</span><span class="n">doc_vec</span><span class="p">)</span>
+<span class="n">doc_idf</span> <span class="o">=</span> <span class="n">get_idf</span><span class="p">(</span><span class="n">doc_vec</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">queries_vec</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">queries_processed</span><span class="p">,</span> <span class="n">vocab</span><span class="p">)</span>
+<span class="n">queries_tf</span> <span class="o">=</span> <span class="n">get_tf</span><span class="p">(</span><span class="n">queries_vec</span><span class="p">)</span>
+<span class="c1"># queries_idf = get_idf(queries_vec)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">doc_tf</span> <span class="o">*</span> <span class="n">doc_idf</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">queries_tfidf</span> <span class="o">=</span> <span class="n">queries_tf</span> <span class="o">*</span> <span class="n">doc_idf</span>
 <span class="n">query_results</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">queries_tfidf</span><span class="p">)</span>
 <span class="n">query_results</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -13294,13 +13437,13 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[208]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([101,  55,  44], dtype=int64)</pre>
+<pre>array([77, 35, 25], dtype=int64)</pre>
 </div>
 
 </div>
@@ -13308,18 +13451,10 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="&#1054;&#1090;&#1086;&#1073;&#1088;&#1072;&#1078;&#1072;&#1077;&#1084;-&#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;">&#1054;&#1090;&#1086;&#1073;&#1088;&#1072;&#1078;&#1072;&#1077;&#1084; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;<a class="anchor-link" href="#&#1054;&#1090;&#1086;&#1073;&#1088;&#1072;&#1078;&#1072;&#1077;&#1084;-&#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;&#1099;">&#182;</a></h2><p>Выведем топ-3 предложений, которые получили наибольший вес</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
@@ -13350,9 +13485,9 @@ div#notebook {
 
 Results:
   Weight  | Sentence
-(0.357645)  рим стали часто называть вечным лат
-(0.228971)  также рим называют городом на семи холмах
-(0.197148)  roma ˈroːma  столица и крупнейший город италии
+(0.533114)  рим стали часто называть вечным лат
+(0.079148)  также рим называют городом на семи холмах
+(0.055470)  рим  один из старейших городов мира древняя столица римской империи
 ------
 
 Query:
@@ -13360,9 +13495,9 @@ Query:
 
 Results:
   Weight  | Sentence
-(0.566765)  биологическое оружие
-(0.274301)  в 1879 году он был избран губернатором кентукки от демократической партии
-(0.225297)  разновидностями биологического оружия являются энтомологическое оружие которое использует насекомых для атаки противника и генетическое оружие предназначенное для избирательного поражения населения по расовому этническому половому или иному генетически обусловленному признаку
+(0.309441)  биологическое оружие
+(0.256880)  его обвинили в заговоре с целью убийства и в нарушении нейтралитета канады но освободили под залог в 8000 долларов
+(0.144803)  в 1879 году он был избран губернатором кентукки от демократической партии
 ------
 
 Query:
@@ -13370,9 +13505,9 @@ Query:
 
 Results:
   Weight  | Sentence
-(0.523687)  флаг барбадоса  официальный символ государства барбадос
-(0.134013)  посейдон со своей женой богиней амфитритой и сыном тритоном обитают в роскошном дворце на дне моря в окружении нереид гиппокампов и других обитателей моря мчится по морю на колеснице запряжённой гиппокампусами с трезубцем которым вызывал бури разбивал скалы ударял по земле что приводило к образованию родников с пресной или морской водой
-(0.114155)  расположен на реке тибр
+(0.594446)  флаг барбадоса  официальный символ государства барбадос
+(0.101780)  посейдон со своей женой богиней амфитритой и сыном тритоном обитают в роскошном дворце на дне моря в окружении нереид гиппокампов и других обитателей моря мчится по морю на колеснице запряжённой гиппокампусами с трезубцем которым вызывал бури разбивал скалы ударял по земле что приводило к образованию родников с пресной или морской водой
+(0.035525)  блэкберн якобы заявил хьямсу что это убьет как самого президента так и всех других обитателей белого дома
 ------
 
 </pre>
@@ -13386,17 +13521,159 @@ Results:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Как видно из результатов, полученные предложения не содержат прямого указания фактов в запросе.</p>
-<p>1) Пейзаж с выжженной равниной увековечил образ вечного города
-Ожидаемо, из-за того, что "вечный город" и "Пейзаж с выжженной равниной" являются непрямыми названиями, найти исходный факт не удалось. С другой стороны, удалось найти предложение, что Рим называют "вечным городом"</p>
-<p>2) Будущего губернатора Кентукки обвиняли в подготовке применения биологического оружия
-Значимо бОльший вес, получило предложение "биологическое оружие", которое было полученно из-за плохой разметки текста Википедии. Так как это предложение содержит всего два слова и все они есть в запросе, документ получил большой вес.
-Также "Будущий губернатор Кентукки" является косвенным названием, которое присутствует в предложениях только один раз (второе по весу предложение). Поэтому документа с запросом также не удалось найти</p>
-<p>3) Трезубец на жёлто-синем фоне — это флаг Барбадоса
-Также не получилось успешно найти. Заметно большой вес первое предложения получило из-за повторения леммы "барбадос" два раза.</p>
+<p>Резульаты похожи на то, что выдает реализация TF-iDF из пакета sklearn</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Max-TF-normalization">Max TF normalization<a class="anchor-link" href="#Max-TF-normalization">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[210]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span>
+
+<span class="n">doc_tf_2</span> <span class="o">=</span> <span class="n">get_tf_max_norm</span><span class="p">(</span><span class="n">doc_vec</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+<span class="n">queries_tf_2</span> <span class="o">=</span> <span class="n">get_tf_max_norm</span><span class="p">(</span><span class="n">queries_vec</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X_2</span> <span class="o">=</span> <span class="n">doc_tf_2</span> <span class="o">*</span> <span class="n">doc_idf</span>
+<span class="c1"># X_2 =  normalize(X_2)</span>
+<span class="n">queries_tfidf_2</span> <span class="o">=</span> <span class="n">queries_tf_2</span> <span class="o">*</span> <span class="n">doc_idf</span>
+<span class="c1"># queries_tfidf_2 = normalize(queries_tfidf_2, axis=1)</span>
+<span class="n">query_results_2</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X_2</span><span class="p">,</span> <span class="n">queries_tfidf_2</span><span class="p">)</span>
+<span class="n">query_results_2</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[211]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([71, 35, 25], dtype=int64)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Query:</span><span class="se">\n</span><span class="si">{query}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Results:</span><span class="se">\n</span><span class="s2">  Weight  | Sentence&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">query_results_2</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;(</span><span class="si">{query_results_2[ind,i]:.6f}</span><span class="s2">)  </span><span class="si">{original_sentences[ind]}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1"># print(f&quot;With weight {query_results[ind,i]:.6f}&quot;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Query:
+Пейзаж с выжженной равниной увековечил образ вечного города.
+
+Results:
+  Weight  | Sentence
+(0.997369)  рим итал
+(0.997358)  биологическое оружие
+(0.996342)  блэкберн был дважды женат у него был один сын
+------
+
+Query:
+Будущего губернатора Кентукки обвиняли в подготовке применения биологического оружия.
+
+Results:
+  Weight  | Sentence
+(0.997151)  биологическое оружие
+(0.996554)  рим итал
+(0.995574)  он боролся с жёлтой лихорадкой в теннесси в 1873 году во флориде в 1877 году и в кентукки в 1878 году
+------
+
+Query:
+Трезубец на жёлто-синем фоне — это флаг Барбадоса.
+
+Results:
+  Weight  | Sentence
+(0.995489)  флаг барбадоса  официальный символ государства барбадос
+(0.993157)  рим итал
+(0.993146)  биологическое оружие
+------
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>В данном случае, можно заметить, что веса (близость векторов) очень большие и близки к 1. Это связано с малым числом токенов в документах, поэтому TF компонента во всех векторах часто приминимает значение 0.4.</p>
+<p>Также можно заметить, что в данном случае отдает предпочтение коротким документам, даже если у них нет совпадения по токенам</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
